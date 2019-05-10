@@ -1,18 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:background="@color/colorActionbar"
+        android:weightSum="3">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/products_back"
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:layout_height="match_parent"
+            android:src="@drawable/back"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2.4"
+            android:layout_height="match_parent"
+            android:text="Big Burger"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:fontFamily="@font/amikobold"
+            />
+        <ImageView
+            android:id="@+id/products_cart"
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:layout_height="match_parent"
+            android:src="@drawable/cart"
+            android:layout_gravity="center"/>
 
-</android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:background="@color/colorbackgroundProducts">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_products"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>
