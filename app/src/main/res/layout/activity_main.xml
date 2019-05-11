@@ -1,48 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorbackgroundProducts"
     tools:context=".MainActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
+        android:background="@color/colorActionbar"
         android:orientation="horizontal"
         android:padding="5dp"
-        android:background="@color/colorActionbar"
         android:weightSum="3">
 
         <ImageView
             android:id="@+id/products_back"
             android:layout_width="0dp"
-            android:layout_weight=".3"
             android:layout_height="match_parent"
-            android:src="@drawable/back"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_weight=".3"
+            android:src="@drawable/back" />
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="2.4"
             android:layout_height="match_parent"
-            android:text="Big Burger"
             android:layout_gravity="center"
-            android:gravity="center"
+            android:layout_weight="2.4"
             android:fontFamily="@font/amikobold"
-            />
-        <ImageView
-            android:id="@+id/products_cart"
+            android:gravity="center"
+            android:text="Big Burger" />
+
+        <android.support.constraint.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_weight=".3"
             android:layout_height="match_parent"
-            android:src="@drawable/cart"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_weight=".3"
+            app:layout_constraintBottom_toTopOf="@+id/cart_incrementer"
+            app:layout_constraintTop_toTopOf="@+id/cart_incrementer">
+
+            <ImageView
+                android:id="@+id/products_cart"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/cart"
+                app:layout_constraintBottom_toTopOf="@+id/cart_incrementer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cart_incrementer"
+                app:layout_constraintVertical_bias="0.521" />
+
+            <TextView
+                android:id="@+id/cart_incrementer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/shape_incrementer"
+                android:padding="4dp"
+                android:text="0"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                android:layout_margin="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/products_cart"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/products_cart" />
+
+        </android.support.constraint.ConstraintLayout>
+
 
     </LinearLayout>
+
     <RelativeLayout
+        android:id="@+id/layout_noError"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp"
-        android:background="@color/colorbackgroundProducts">
+        android:visibility="visible"
+        android:layout_margin="5dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView_products"
@@ -56,6 +93,41 @@
             android:layout_centerInParent="true" />
     </RelativeLayout>
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorbackgroundProducts"
+        android:padding="5dp"
+        android:visibility="gone">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/image_error"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.397" />
+
+        <TextView
+            android:id="@+id/btn_tryagain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:padding="15dp"
+            android:text="Oops! some thing error tap to try again"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>

@@ -5,5 +5,8 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="colorActionbar">#fff</color>
-    <color name="colorbackgroundProducts">#A3F0F0F0</color>
+    <color name="colorbackgroundProducts">#E4F0F0F0</color>
+    <color name="colorbtn_bourder_clicked">#D3661C</color>
+    <color name="colorbtn_bourder_unclicked">#00838F</color>
+
 </resources>

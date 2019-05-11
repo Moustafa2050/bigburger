@@ -5,19 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="15dp"
-    app:cardCornerRadius="12dp">
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp">
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        android:gravity="center_horizontal">
 
         <ImageView
             android:id="@+id/product_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="0dp"
             android:src="@drawable/burger"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,28 +29,28 @@
 
         <TextView
             android:id="@+id/product_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:layout_marginTop="18dp"
             android:text="name of pruduct"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/product_image" />
+
+            android:autoSizeMaxTextSize="15sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"/>
 
         <TextView
             android:id="@+id/product_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="A classic but so good."
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/product_name" />
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="18dp"
+            android:layout_marginTop="5dp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:text="A classic but so good." />
 
         <TextView
             android:id="@+id/product_price"
@@ -58,21 +62,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/product_description" />
 
-        <Button
+        <TextView
             android:id="@+id/product_btn"
-            style="@style/ButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
+            android:padding="10dp"
             android:text="Add to Cart "
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/product_price" />
+            android:textStyle="bold"
+            android:background="@drawable/shape_btn_green"
+            android:gravity="bottom"
+            android:layout_gravity="bottom|center"/>
 
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>

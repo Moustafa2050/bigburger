@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.rowland.cartcounter:CartCounter:1.0.0-beta-2@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/CartCounter-1.0.0-beta-2.aar/29525c6d7c6090cbfb1e40465fa5d556/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/CartCounter-1.0.0-beta-2.aar/29525c6d7c6090cbfb1e40465fa5d556/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.rowland.cartcounter/CartCounter/1.0.0-beta-2/d56c2f0976a5fa42e69c343f533e39048a3cb2cf/CartCounter-1.0.0-beta-2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
