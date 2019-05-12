@@ -40,9 +40,9 @@ public class product_adapter extends RecyclerView.Adapter<product_adapter.MyView
 
             Picasso.get().load(product.getThumbnail()).error(R.drawable.image_error)
                     .into(image);
-            name.setText(product.getTitle());
-            description.setText(product.getDescription());
-            double percentage = (product.getPrice() / 100.00);
+            name.setText(product.getTitle());//name of product
+            description.setText(product.getDescription());//description of product
+            double percentage = (product.getPrice() / 100.00);//get price percentage
             price.setText( percentage+" ₺" );
 
             AddToCart.setOnClickListener(new View.OnClickListener() {

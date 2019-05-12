@@ -37,7 +37,9 @@ public class CartActivity extends Activity implements productCart_view {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+        //initial Activity
         initActivity();
+        //get response for API
         getListOfProducts();
     }
 
@@ -62,7 +64,7 @@ public class CartActivity extends Activity implements productCart_view {
     }
 
     public void getListOfProducts() {
-        ArrayList<productCart_module> product = MainActivity.productModuleList;
+        ArrayList<productCart_module> product = MainActivity.productModuleList;//get list of Products for Main Activity
         for (int i = 0; i < product.size(); i++) {
             if (product.get(i).isAdded()) {
                 productModuleList.add(product.get(i));
@@ -93,9 +95,8 @@ public class CartActivity extends Activity implements productCart_view {
 
         });
         recyclerViewCartProducts.setAdapter(productAdapter);
-        GetTotalPrice();
+        GetTotalPrice();//get the total price for all products in cart
     }
-
 
     @Override
     public void updateErrorProductsCart(String message) {
@@ -110,6 +111,6 @@ public class CartActivity extends Activity implements productCart_view {
             }
         }
         double percentage = (TotalPrice_value / 100.00);
-        total_price.setText(percentage +" ₺" );
+        total_price.setText(percentage + " ₺");
     }
 }

@@ -4,8 +4,6 @@ import com.moustafa.bigburger.View.product_view;
 import com.moustafa.bigburger.module.productCart_module;
 import com.moustafa.bigburger.module.product_module;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 import okhttp3.ResponseBody;
@@ -18,14 +16,13 @@ public class Products_Presenter {
 
     public Products_Presenter(product_view context) {
         this.product_view = context;
-        ListProducts=new ArrayList<>();
-
+        ListProducts = new ArrayList<>();
     }
 
-    public  void GetProductsFromJSON(Response<ArrayList<product_module>> response) {
-        if (response.isSuccessful()){
-            for (int i=0;i<response.body().size();i++){
-                productCart_module product=new productCart_module();
+    public void GetProductsFromJSON(Response<ArrayList<product_module>> response) {
+        if (response.isSuccessful()) {
+            for (int i = 0; i < response.body().size(); i++) {
+                productCart_module product = new productCart_module();
                 product.setRef(response.body().get(i).getRef());
                 product.setDescription(response.body().get(i).getDescription());
                 product.setTitle(response.body().get(i).getTitle());
@@ -37,7 +34,7 @@ public class Products_Presenter {
             }
             product_view.updateProducts(ListProducts);
 
-        }else {
+        } else {
             HandelErrorConverter(response.errorBody());
         }
 
@@ -47,7 +44,7 @@ public class Products_Presenter {
 
     }
 
-    public  void HandelErrorConverter(ResponseBody responseBody){
+    public void HandelErrorConverter(ResponseBody responseBody) {
 
     }
 
