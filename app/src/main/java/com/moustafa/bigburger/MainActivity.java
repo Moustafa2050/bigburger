@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity implements product_view {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initActivity();
-        Loading(true);
-        getProducts();
+        initActivity();//init activity
+        Loading(true);//set progress bar is loading while get a response
+        getProducts();//get data From API
 
     }
 
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements product_view {
         recyclerViewProducts.setLayoutManager(new GridLayoutManager(getBaseContext(), 2));
         presenter = new Products_Presenter(this);
         productModuleList = new ArrayList<>();
+        //GO to Cart Activity
         products_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,12 +86,29 @@ public class MainActivity extends AppCompatActivity implements product_view {
         call.enqueue(new Callback<ArrayList<product_module>>() {
             @Override
             public void onResponse(Call<ArrayList<product_module>> call, Response<ArrayList<product_module>> response) {
-                presenter.GetProductsFromJSON(response);
+                if (response.isSuccessful()){
+                    presenter.GetProductsFromJSON(response);//response is correct with out network error
+                }else {
+                    // error case
+                    switch (response.code()) {
+                        case 404:
+                            Toast.makeText(getApplicationContext(), "not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 500:
+                            Toast.makeText(getApplicationContext(), "server broken", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(getApplicationContext(), "unknown error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
+
             }
 
             @Override
             public void onFailure(Call<ArrayList<product_module>> call, Throwable t) {
-                presenter.HandelErrorConnections(t);
+
+                presenter.HandelErrorConnections(t);//network error
             }
         });
     }

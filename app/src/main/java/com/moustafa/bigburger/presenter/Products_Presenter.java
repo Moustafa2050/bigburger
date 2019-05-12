@@ -45,7 +45,7 @@ public class Products_Presenter {
     }
 
     public void HandelErrorConverter(ResponseBody responseBody) {
-
+        product_view.updateErrorProducts("network failure :( inform the user and possibly retry");
     }
 
 
