@@ -30,6 +30,8 @@
             android:layout_weight="2.4"
             android:fontFamily="@font/amikobold"
             android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
             android:text="Big Burger" />
 
         <android.support.constraint.ConstraintLayout
@@ -45,12 +47,20 @@
 
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:translationZ="2dp"
+        android:background="@color/colorAccent"
+        android:layout_below="@id/action_bar"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/action_bar">
+        android:paddingBottom="145dp"
+        android:layout_below="@id/action_bar"
+       >
 
     </android.support.v7.widget.RecyclerView>
 
@@ -67,7 +77,7 @@
         android:orientation="vertical"
         android:layout_margin="10dp"
         android:padding="10dp"
-        android:background="@drawable/shape_btn_green"
+        android:background="@drawable/shape_totalprice"
         android:layout_alignParentBottom="true">
 
         <TextView
@@ -89,9 +99,8 @@
             android:id="@+id/btn_checkout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:text="Ckeck out"
-            android:textColor="#143235"/>
+            android:textColor="#143235" />
     </LinearLayout>
 
 </RelativeLayout>

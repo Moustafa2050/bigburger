@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorbackgroundProducts"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -14,6 +14,7 @@
         android:background="@color/colorActionbar"
         android:orientation="horizontal"
         android:padding="5dp"
+
         android:weightSum="3">
 
         <ImageView
@@ -28,23 +29,25 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_weight="2.4"
+            android:layout_weight="2.35"
             android:fontFamily="@font/amikobold"
             android:gravity="center"
-            android:text="Big Burger" />
+            android:text="Big Burger"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_weight=".3"
+            android:layout_weight=".35"
             app:layout_constraintBottom_toTopOf="@+id/cart_incrementer"
             app:layout_constraintTop_toTopOf="@+id/cart_incrementer">
 
             <ImageView
                 android:id="@+id/products_cart"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:src="@drawable/cart"
                 app:layout_constraintBottom_toTopOf="@+id/cart_incrementer"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,13 +60,13 @@
                 android:id="@+id/cart_incrementer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="1dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/shape_incrementer"
                 android:padding="4dp"
                 android:text="0"
                 android:textColor="#fff"
                 android:textSize="12sp"
-                android:layout_margin="1dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/products_cart"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -74,17 +77,25 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:translationZ="2dp"
+        android:background="@color/colorAccent"
+        android:layout_below="@id/action_bar"/>
+
     <RelativeLayout
         android:id="@+id/layout_noError"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
-        android:layout_margin="5dp">
+
+        android:visibility="visible">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView_products"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"/>
 
         <ProgressBar
             android:id="@+id/loading"

@@ -43,25 +43,28 @@ public class productCart_adapter extends RecyclerView.Adapter<productCart_adapte
             Picasso.get().load(product.getThumbnail()).error(R.drawable.image_error)
                     .into(image);
             name.setText(product.getTitle());
-            price.setText("" + product.getPrice());
+            double percentage = (product.getPrice() / 100.00);
+            price.setText(percentage + " ₺");
+
             Increment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     List.get(position).setCount(product.getCount() + 1);
-                    count.setText(List.get(position).getCount()+ "");
-                    GetTotalPrice();
-                    listener.onIncrementClick(TotalPrice_value);
+                    count.setText(List.get(position).getCount() + "");
+                    double newTotlaPrice = (GetTotalPrice() / 100.00);
+
+                    listener.onIncrementClick(newTotlaPrice);
                 }
             });
             Decrment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (List.get(position).getCount()>1){
+                    if (List.get(position).getCount() > 1) {
                         List.get(position).setCount(product.getCount() - 1);
-                        count.setText(List.get(position).getCount()+ "");
-                        GetTotalPrice();
-                        listener.onIncrementClick(TotalPrice_value);
+                        count.setText(List.get(position).getCount() + "");
+                        double newTotlaPrice = (GetTotalPrice() / 100.00);
+                        listener.onDecrementClick(newTotlaPrice);
                     }
 
                 }
@@ -71,18 +74,21 @@ public class productCart_adapter extends RecyclerView.Adapter<productCart_adapte
                 public void onClick(View v) {
                     List.remove(product);
                     notifyDataSetChanged();
-                    GetTotalPrice();
-                    listener.onIncrementClick(TotalPrice_value);
+                    double newTotlaPrice = (GetTotalPrice() / 100.00);
+                    listener.onRemoveClick(newTotlaPrice, product.getRef());
                 }
             });
         }
-        public void GetTotalPrice() {
+
+        public float GetTotalPrice() {
             for (int i = 0; i < List.size(); i++) {
                 productCart_module product = List.get(i);
                 if (product.isAdded()) {
+
                     TotalPrice_value += product.getPrice() * product.getCount();
                 }
             }
+            return TotalPrice_value;
         }
     }
 
@@ -111,8 +117,11 @@ public class productCart_adapter extends RecyclerView.Adapter<productCart_adapte
     }
 
     public interface OnItemClickListener {
-        void onIncrementClick(float totalPrice);
+        void onIncrementClick(double totalPrice);
 
+        void onDecrementClick(double totalPrice);
+
+        void onRemoveClick(double totalPrice, String id);
     }
 
 

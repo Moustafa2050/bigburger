@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/colorbtn_unclicked"/>
-    <stroke android:color="@color/colorbtn_bourder_unclicked" android:width="1dp"/>
+    <solid android:color="@color/colorbackgroundProductsshape"/>
+    <stroke android:color="@color/colorbackgroundProducts" android:width="1dp"/>
     <corners android:radius="5dp" />
 </shape>

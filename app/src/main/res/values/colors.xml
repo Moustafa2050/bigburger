@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#2E7D32</color>
+    <color name="colorPrimaryDark">#9E9D24</color>
+    <color name="colorAccent">#F9A825</color>
 
     <color name="colorActionbar">#fff</color>
-    <color name="colorbackgroundProducts">#E4F0F0F0</color>
-    <color name="colorbtn_bourder_clicked">#D3661C</color>
-    <color name="colorbtn_bourder_unclicked">#00838F</color>
+    <color name="colorbackgroundProducts">#BFF5F5F5</color>
+    <color name="colorbackgroundProductsshape">#B4F9A825</color>
+
+    <color name="colorbtn_bourder_clicked">#D50000</color>
+    <color name="colorbtn_clicked">#168E3F38</color>
+
+    <color name="colorbtn_bourder_unclicked">#00C853</color>
+    <color name="colorbtn_unclicked">#1E8FB36C</color>
+
+
+
 
 </resources>

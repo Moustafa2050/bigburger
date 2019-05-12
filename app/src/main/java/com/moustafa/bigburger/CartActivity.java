@@ -52,6 +52,13 @@ public class CartActivity extends Activity implements productCart_view {
         productModuleList = new ArrayList<>();
         loading_progress.setVisibility(View.VISIBLE);
 
+        products_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
     public void getListOfProducts() {
@@ -69,11 +76,18 @@ public class CartActivity extends Activity implements productCart_view {
         loading_progress.setVisibility(View.GONE);
         productAdapter = new productCart_adapter(this, ListProducts, new productCart_adapter.OnItemClickListener() {
             @Override
-            public void onIncrementClick(float totalPrice) {
-            /*    productModuleList.remove(index);
-                productModuleList.add(index, item);
-                GetTotalPrice();*/
-                total_price.setText(totalPrice + "");
+            public void onIncrementClick(double totalPrice) {
+                total_price.setText(totalPrice + " ₺");
+            }
+
+            @Override
+            public void onDecrementClick(double totalPrice) {
+                total_price.setText(totalPrice + " ₺");
+            }
+
+            @Override
+            public void onRemoveClick(double totalPrice, String id) {
+                total_price.setText(totalPrice + " ₺");
             }
 
 
@@ -81,6 +95,7 @@ public class CartActivity extends Activity implements productCart_view {
         recyclerViewCartProducts.setAdapter(productAdapter);
         GetTotalPrice();
     }
+
 
     @Override
     public void updateErrorProductsCart(String message) {
@@ -94,6 +109,7 @@ public class CartActivity extends Activity implements productCart_view {
                 TotalPrice_value += product.getPrice() * product.getCount();
             }
         }
-        total_price.setText(TotalPrice_value + "");
+        double percentage = (TotalPrice_value / 100.00);
+        total_price.setText(percentage +" ₺" );
     }
 }

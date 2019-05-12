@@ -42,7 +42,8 @@ public class product_adapter extends RecyclerView.Adapter<product_adapter.MyView
                     .into(image);
             name.setText(product.getTitle());
             description.setText(product.getDescription());
-            price.setText( ""+product.getPrice());
+            double percentage = (product.getPrice() / 100.00);
+            price.setText( percentage+" ₺" );
 
             AddToCart.setOnClickListener(new View.OnClickListener() {
                 @Override

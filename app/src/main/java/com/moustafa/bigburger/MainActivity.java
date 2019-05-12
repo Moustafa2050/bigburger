@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements product_view {
 
     }
 
+
     private void initActivity() {
         products_back = findViewById(R.id.products_back);
         products_cart = findViewById(R.id.products_cart);
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements product_view {
         products_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(),CartActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
                 startActivity(intent);
             }
         });
@@ -96,11 +97,11 @@ public class MainActivity extends AppCompatActivity implements product_view {
 
     @Override
     public void updateProducts(ArrayList<productCart_module> ListProducts) {
-        productModuleList=ListProducts;
+        productModuleList = ListProducts;
         Loading(false);
         productAdapter = new product_adapter(MainActivity.this, ListProducts, new product_adapter.OnItemClickListener() {
             @Override
-            public void onItemClick(productCart_module item, boolean Add,int index) {
+            public void onItemClick(productCart_module item, boolean Add, int index) {
                 productModuleList.remove(index);
                 productModuleList.add(index, item);
                 if (Add) {
