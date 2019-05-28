@@ -1,5 +1,6 @@
 package com.moustafa.bigburger;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -20,6 +21,7 @@ import com.moustafa.bigburger.module.product_module;
 import com.moustafa.bigburger.presenter.ProductCart_Presnter;
 import com.moustafa.bigburger.presenter.Products_Presenter;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class CartActivity extends Activity implements productCart_view {
@@ -31,7 +33,7 @@ public class CartActivity extends Activity implements productCart_view {
     ProductCart_Presnter presenter;
     TextView total_price;
     Button btn_checkout;
-    float TotalPrice_value;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,31 +69,33 @@ public class CartActivity extends Activity implements productCart_view {
         ArrayList<productCart_module> product = MainActivity.productModuleList;//get list of Products for Main Activity
         for (int i = 0; i < product.size(); i++) {
             if (product.get(i).isAdded()) {
+              //  product.get(i).setPrice((double) (product.get(i).getPrice() ));
                 productModuleList.add(product.get(i));
             }
         }
         presenter.GetProductsFromJSON(productModuleList);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void updateProductsCart(ArrayList<productCart_module> ListProducts) {
         loading_progress.setVisibility(View.GONE);
         productAdapter = new productCart_adapter(this, ListProducts, new productCart_adapter.OnItemClickListener() {
+
             @Override
-            public void onIncrementClick(double totalPrice) {
+            public void onIncrementClick(float totalPrice) {
                 total_price.setText(totalPrice + " ₺");
             }
 
             @Override
-            public void onDecrementClick(double totalPrice) {
+            public void onDecrementClick(float totalPrice) {
                 total_price.setText(totalPrice + " ₺");
             }
 
             @Override
-            public void onRemoveClick(double totalPrice, String id) {
+            public void onRemoveClick(float totalPrice, String id) {
                 total_price.setText(totalPrice + " ₺");
             }
-
 
         });
         recyclerViewCartProducts.setAdapter(productAdapter);
@@ -103,14 +107,15 @@ public class CartActivity extends Activity implements productCart_view {
 
     }
 
+    @SuppressLint("SetTextI18n")
     public void GetTotalPrice() {
+        double TotalPrice_value=0.00f;
         for (int i = 0; i < productModuleList.size(); i++) {
             productCart_module product = productModuleList.get(i);
             if (product.isAdded()) {
                 TotalPrice_value += product.getPrice() * product.getCount();
             }
         }
-        double percentage = (TotalPrice_value / 100.00);
-        total_price.setText(percentage + " ₺");
+        total_price.setText(new DecimalFormat("##.##").format(TotalPrice_value) + " ₺");
     }
 }

@@ -3,11 +3,11 @@ package com.moustafa.bigburger.module;
 public class productCart_module {
 
     String ref, title, description, thumbnail;
-    float price;
+    double price;
     boolean added;
     int count;
 
-    public productCart_module(String ref, String title, String description, String thumbnail, float price, boolean added, int count) {
+    public productCart_module(String ref, String title, String description, String thumbnail, double price, boolean added, int count) {
         this.ref = ref;
         this.title = title;
         this.description = description;
@@ -52,11 +52,11 @@ public class productCart_module {
         this.thumbnail = thumbnail;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.todkars:shimmer-recyclerview:0.3.0@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/shimmer-recyclerview-0.3.0.aar/80d87588875c8e283c7638dd74044130/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/shimmer-recyclerview-0.3.0.aar/80d87588875c8e283c7638dd74044130/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/shimmer-recyclerview-0.3.0.aar/80d87588875c8e283c7638dd74044130/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.todkars/shimmer-recyclerview/0.3.0/22da0123073ceece292e025bdcb768aea6a8f1cc/shimmer-recyclerview-0.3.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

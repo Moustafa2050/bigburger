@@ -27,7 +27,7 @@ public class Products_Presenter {
                 product.setDescription(response.body().get(i).getDescription());
                 product.setTitle(response.body().get(i).getTitle());
                 product.setThumbnail(response.body().get(i).getThumbnail());
-                product.setPrice(response.body().get(i).getPrice());
+                product.setPrice(response.body().get(i).getPrice()/ 100.00);
                 product.setAdded(false);
                 product.setCount(0);
                 ListProducts.add(product);

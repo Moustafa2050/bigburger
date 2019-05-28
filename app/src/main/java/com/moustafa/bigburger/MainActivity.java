@@ -54,6 +54,13 @@ public class MainActivity extends AppCompatActivity implements product_view {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (productAdapter != null) {
+            productAdapter.notifyDataSetChanged();
+        }
+    }
 
     private void initActivity() {
         products_back = findViewById(R.id.products_back);
@@ -86,9 +93,9 @@ public class MainActivity extends AppCompatActivity implements product_view {
         call.enqueue(new Callback<ArrayList<product_module>>() {
             @Override
             public void onResponse(Call<ArrayList<product_module>> call, Response<ArrayList<product_module>> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     presenter.GetProductsFromJSON(response);//response is correct with out network error
-                }else {
+                } else {
                     // error case
                     switch (response.code()) {
                         case 404:
