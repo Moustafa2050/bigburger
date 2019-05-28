@@ -30,9 +30,9 @@
             android:layout_weight="2.4"
             android:fontFamily="@font/amikobold"
             android:gravity="center"
+            android:text="Big Burger"
             android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            android:text="Big Burger" />
+            android:textSize="20sp" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="0dp"
@@ -47,20 +47,20 @@
 
 
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:translationZ="2dp"
+        android:layout_below="@id/action_bar"
         android:background="@color/colorAccent"
-        android:layout_below="@id/action_bar"/>
+        android:translationZ="2dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="145dp"
-        android:layout_below="@id/action_bar"
-       >
+        android:paddingBottom="130dp"
+        android:layout_below="@id/action_bar">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -74,11 +74,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
-        android:padding="10dp"
         android:background="@drawable/shape_totalprice"
-        android:layout_alignParentBottom="true">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,14 +86,15 @@
             android:text="Total Price"
             android:textColor="#143235"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="23,4234 TL"
-            android:textSize="25sp"
+            android:text="23,42 TL"
             android:textColor="#143235"
-            android:textStyle="bold"/>
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_checkout"

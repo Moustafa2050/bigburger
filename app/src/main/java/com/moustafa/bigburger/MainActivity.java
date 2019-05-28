@@ -1,6 +1,5 @@
 package com.moustafa.bigburger;
 
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -22,6 +21,7 @@ import com.moustafa.bigburger.connection.APIUrl;
 import com.moustafa.bigburger.module.productCart_module;
 import com.moustafa.bigburger.module.product_module;
 import com.moustafa.bigburger.presenter.Products_Presenter;
+import com.moustafa.bigburger.secondPartInTest.closestToZeroClass;
 
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements product_view {
 
-    ImageView products_back, products_cart;
+    ImageView products_cart;
     RecyclerView recyclerViewProducts;
     public static ArrayList<productCart_module> productModuleList;
     ConstraintLayout layout_error;
@@ -48,31 +48,38 @@ public class MainActivity extends AppCompatActivity implements product_view {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initActivity();//init activity
-        Loading(true);//set progress bar is loading while get a response
-        getProducts();//get data From API
+        //init activity
+        initActivity();
+        //set progress bar is loading while get a response
+        Loading(true);
+        //get data From API
+        getProducts();
 
     }
+
 
     @Override
     protected void onResume() {
         super.onResume();
+        //refresh data base in list products
         if (productAdapter != null) {
             productAdapter.notifyDataSetChanged();
         }
     }
 
     private void initActivity() {
-        products_back = findViewById(R.id.products_back);
+
         products_cart = findViewById(R.id.products_cart);
         loading = findViewById(R.id.loading);
         layout_error = findViewById(R.id.layout_error);
         btn_tryagain = findViewById(R.id.btn_tryagain);
         cart_incrementer = findViewById(R.id.cart_incrementer);
         recyclerViewProducts = findViewById(R.id.recyclerView_products);
+
+        productModuleList = new ArrayList<>();
         recyclerViewProducts.setLayoutManager(new GridLayoutManager(getBaseContext(), 2));
         presenter = new Products_Presenter(this);
-        productModuleList = new ArrayList<>();
+
         //GO to Cart Activity
         products_cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements product_view {
 
     }
 
-
+    //get products from api
     public void getProducts() {
         Gson gson = new GsonBuilder().setLenient().create();
         Retrofit retrofit = new Retrofit.Builder().baseUrl(APIUrl.BASE_URL).addConverterFactory(GsonConverterFactory.create(gson)).build();
@@ -94,7 +101,8 @@ public class MainActivity extends AppCompatActivity implements product_view {
             @Override
             public void onResponse(Call<ArrayList<product_module>> call, Response<ArrayList<product_module>> response) {
                 if (response.isSuccessful()) {
-                    presenter.GetProductsFromJSON(response);//response is correct with out network error
+                    //response is correct with out network error
+                    presenter.GetProductsFromJSON(response);
                 } else {
                     // error case
                     switch (response.code()) {
@@ -114,8 +122,8 @@ public class MainActivity extends AppCompatActivity implements product_view {
 
             @Override
             public void onFailure(Call<ArrayList<product_module>> call, Throwable t) {
-
-                presenter.HandelErrorConnections(t);//network error
+                //network error
+                presenter.HandelErrorConnections(t);
             }
         });
     }
@@ -123,15 +131,21 @@ public class MainActivity extends AppCompatActivity implements product_view {
     @Override
     public void updateProducts(ArrayList<productCart_module> ListProducts) {
         productModuleList = ListProducts;
+        //set progress bar is disable and show recycler view
         Loading(false);
+        //modify adapter with onclick item listener
         productAdapter = new product_adapter(MainActivity.this, ListProducts, new product_adapter.OnItemClickListener() {
             @Override
             public void onItemClick(productCart_module item, boolean Add, int index) {
+
+                //replace product after change statues it
                 productModuleList.remove(index);
                 productModuleList.add(index, item);
+                //add item to cart and increment count of product in cart
                 if (Add) {
                     startCountIncrementAnimation();
                 } else {
+                    // Decrement count of product in cart
                     startCountDecrementAnimation();
                 }
 
@@ -143,34 +157,39 @@ public class MainActivity extends AppCompatActivity implements product_view {
 
     @Override
     public void updateErrorProducts(String message) {
+        //hide progress bar and recycler view and show layout error
         LoadingError();
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public void Loading(boolean state) {
-        if (state) {
+        if (state) {// start loading data form api
             recyclerViewProducts.setVisibility(View.GONE);
             layout_error.setVisibility(View.GONE);
             loading.setVisibility(View.VISIBLE);
 
         } else {
-
+            //finish loading data form api
             loading.setVisibility(View.GONE);
             layout_error.setVisibility(View.GONE);
             recyclerViewProducts.setVisibility(View.VISIBLE);
         }
     }
 
+    /**/
     public void LoadingError() {
+        //error happend while loading data
         recyclerViewProducts.setVisibility(View.GONE);
         loading.setVisibility(View.GONE);
         layout_error.setVisibility(View.VISIBLE);
     }
 
+    //increment count of product in cart
     public void startCountIncrementAnimation() {
         cart_incrementer.setText(++CountOfOrders + "");
     }
 
+    //decrement count of product in cart
     public void startCountDecrementAnimation() {
         cart_incrementer.setText(--CountOfOrders + "");
     }

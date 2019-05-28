@@ -33,9 +33,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="18dp"
-            android:text="name of pruduct"
             android:textStyle="bold"
-
             android:autoSizeMaxTextSize="15sp"
             android:autoSizeStepGranularity="2sp"
             android:autoSizeTextType="uniform"/>

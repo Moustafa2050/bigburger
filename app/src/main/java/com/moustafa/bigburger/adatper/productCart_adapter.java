@@ -19,7 +19,8 @@ import java.util.List;
 
 public class productCart_adapter extends RecyclerView.Adapter<productCart_adapter.MyViewHolder> {
 
-    Context mContext;
+    private Context mContext;
+
     private List<productCart_module> List;
     private final productCart_adapter.OnItemClickListener listener;
 
@@ -45,6 +46,7 @@ public class productCart_adapter extends RecyclerView.Adapter<productCart_adapte
 
     public productCart_adapter(Context mContext, java.util.List<productCart_module> List, productCart_adapter.OnItemClickListener listener) {
         this.mContext = mContext;
+        //list of products
         this.List = List;
         this.listener = listener;
     }
@@ -61,26 +63,30 @@ public class productCart_adapter extends RecyclerView.Adapter<productCart_adapte
     public void onBindViewHolder(@NonNull final productCart_adapter.MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         final productCart_module product = List.get(position);
-
+        //loading product image by picasso library
         Picasso.get().load(product.getThumbnail()).error(R.drawable.image_error)
                 .into(holder.image);
+        //show product name
         holder.name.setText(product.getTitle());
-        double percentage = (product.getPrice());
-        holder.price.setText(percentage + " ₺");
+        //show product price
+        holder.price.setText(product.getPrice() + " ₺");
 
+        //increment button listener
         holder.Increment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                //increment count of product in cart
                 List.get(position).setCount(product.getCount() + 1);
                 holder.count.setText(List.get(position).getCount() + "");
-
                 listener.onIncrementClick(GetTotalPrice());
             }
         });
+        //decrement button listener
         holder.Decrment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //decrement count of product in cart if count is bigger than 1
                 if (List.get(position).getCount() > 1) {
                     List.get(position).setCount(product.getCount() - 1);
                     holder.count.setText(List.get(position).getCount() + "");
@@ -89,6 +95,7 @@ public class productCart_adapter extends RecyclerView.Adapter<productCart_adapte
 
             }
         });
+        //remove button listener
         holder.remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,10 +120,14 @@ public class productCart_adapter extends RecyclerView.Adapter<productCart_adapte
         void onRemoveClick(float totalPrice, String id);
     }
 
+    //get total price for all
     private float GetTotalPrice() {
+        //initial total price with tow digit after decimal point
         float TotalPrice_value = 0.00f;
+
         for (int i = 0; i < List.size(); i++) {
             productCart_module product = List.get(i);
+            //if product is added to card(just for verification)
             if (product.isAdded()) {
                 TotalPrice_value += product.getPrice() * product.getCount();
             }

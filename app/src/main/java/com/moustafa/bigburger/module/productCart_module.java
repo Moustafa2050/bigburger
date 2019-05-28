@@ -2,10 +2,10 @@ package com.moustafa.bigburger.module;
 
 public class productCart_module {
 
-    String ref, title, description, thumbnail;
-    double price;
-    boolean added;
-    int count;
+    private String ref, title, description, thumbnail;
+    private double price;
+    private boolean added;
+    private int count;
 
     public productCart_module(String ref, String title, String description, String thumbnail, double price, boolean added, int count) {
         this.ref = ref;

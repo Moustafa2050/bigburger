@@ -27,6 +27,7 @@ public class Products_Presenter {
                 product.setDescription(response.body().get(i).getDescription());
                 product.setTitle(response.body().get(i).getTitle());
                 product.setThumbnail(response.body().get(i).getThumbnail());
+                //convert product price to decimal digit with to digit after point
                 product.setPrice(response.body().get(i).getPrice()/ 100.00);
                 product.setAdded(false);
                 product.setCount(0);
@@ -45,7 +46,7 @@ public class Products_Presenter {
     }
 
     public void HandelErrorConverter(ResponseBody responseBody) {
-        product_view.updateErrorProducts("network failure :( inform the user and possibly retry");
+        product_view.updateErrorProducts("network failure ( inform the user and possibly retry");
     }
 
 

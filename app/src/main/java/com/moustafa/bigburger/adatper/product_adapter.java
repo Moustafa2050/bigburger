@@ -2,6 +2,7 @@ package com.moustafa.bigburger.adatper;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,10 +43,12 @@ public class product_adapter extends RecyclerView.Adapter<product_adapter.MyView
 
     public product_adapter(Context mContext, java.util.List<productCart_module> List, OnItemClickListener listener) {
         this.mContext = mContext;
+        //list of products
         this.List = List;
         this.listener = listener;
     }
 
+    @NonNull
     @Override
     public product_adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
@@ -58,16 +61,20 @@ public class product_adapter extends RecyclerView.Adapter<product_adapter.MyView
     public void onBindViewHolder(final product_adapter.MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         final productCart_module product = List.get(position);
+        //loading image of product by picasso library
         Picasso.get().load(product.getThumbnail()).error(R.drawable.image_error)
                 .into(holder.image);
-        holder.name.setText(product.getTitle());//name of product
-        holder.description.setText(product.getDescription());//description of product
-        double percentage = (product.getPrice() );//get price percentage
-        holder.price.setText(percentage + " ₺");
-        if (!product.isAdded()) {//item is added in cart
+        //get product image
+        holder.name.setText(product.getTitle());
+        //get  product description
+        holder.description.setText(product.getDescription());
+        //get product price
+        holder.price.setText(product.getPrice() + " ₺");
+        //modify add to cart button if product is added to cart or not
+        if (!product.isAdded()) {//item is not added in cart
             holder.AddToCart.setText("Add to cart");
             holder.AddToCart.setBackground(mContext.getResources().getDrawable(R.drawable.shape_btn_green));
-        } else {//item is not add in cart
+        } else {//item already is added  in cart
             holder.AddToCart.setText("Remove");
             holder.AddToCart.setBackground(mContext.getResources().getDrawable(R.drawable.shape_btn_red));
         }
@@ -75,7 +82,7 @@ public class product_adapter extends RecyclerView.Adapter<product_adapter.MyView
         holder.AddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (product.isAdded()) {//item is already add in cart
+                if (product.isAdded()) {//item is already added in cart
                     List.get(position).setAdded(false);
                     List.get(position).setCount(0);
                     listener.onItemClick(List.get(position), false, position);

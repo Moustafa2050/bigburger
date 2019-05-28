@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.moustafa.bigburger.View.productCart_view;
 import com.moustafa.bigburger.adatper.productCart_adapter;
@@ -46,16 +47,20 @@ public class CartActivity extends Activity implements productCart_view {
     }
 
     private void initActivity() {
+
         products_back = findViewById(R.id.products_back);
         loading_progress = findViewById(R.id.loading_progress);
         total_price = findViewById(R.id.total_price);
         btn_checkout = findViewById(R.id.btn_checkout);
         recyclerViewCartProducts = findViewById(R.id.recyclerView_cart);
+
+        productModuleList = new ArrayList<>();
         recyclerViewCartProducts.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false));
         presenter = new ProductCart_Presnter(this);
-        productModuleList = new ArrayList<>();
+
         loading_progress.setVisibility(View.VISIBLE);
 
+        //listing to back to main activity
         products_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,11 +70,12 @@ public class CartActivity extends Activity implements productCart_view {
 
     }
 
+    //get product for main activity and fitter it
     public void getListOfProducts() {
         ArrayList<productCart_module> product = MainActivity.productModuleList;//get list of Products for Main Activity
         for (int i = 0; i < product.size(); i++) {
+            //if product is added to cart
             if (product.get(i).isAdded()) {
-              //  product.get(i).setPrice((double) (product.get(i).getPrice() ));
                 productModuleList.add(product.get(i));
             }
         }
@@ -79,21 +85,25 @@ public class CartActivity extends Activity implements productCart_view {
     @SuppressLint("SetTextI18n")
     @Override
     public void updateProductsCart(ArrayList<productCart_module> ListProducts) {
+
         loading_progress.setVisibility(View.GONE);
         productAdapter = new productCart_adapter(this, ListProducts, new productCart_adapter.OnItemClickListener() {
 
             @Override
             public void onIncrementClick(float totalPrice) {
+                //increment product count clicked and show new total price
                 total_price.setText(totalPrice + " ₺");
             }
 
             @Override
             public void onDecrementClick(float totalPrice) {
+                //decrement product count clicked and show new total price
                 total_price.setText(totalPrice + " ₺");
             }
 
             @Override
             public void onRemoveClick(float totalPrice, String id) {
+                //remove product from cart clicked and show new total price
                 total_price.setText(totalPrice + " ₺");
             }
 
@@ -104,12 +114,13 @@ public class CartActivity extends Activity implements productCart_view {
 
     @Override
     public void updateErrorProductsCart(String message) {
-
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    //show total price for all products in cart
     @SuppressLint("SetTextI18n")
     public void GetTotalPrice() {
-        double TotalPrice_value=0.00f;
+        double TotalPrice_value = 0.00f;
         for (int i = 0; i < productModuleList.size(); i++) {
             productCart_module product = productModuleList.get(i);
             if (product.isAdded()) {

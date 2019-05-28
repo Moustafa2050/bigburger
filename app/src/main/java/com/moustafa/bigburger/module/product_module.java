@@ -2,8 +2,8 @@ package com.moustafa.bigburger.module;
 
 public class product_module {
 
-    String ref, title, description, thumbnail;
-    float price;
+    private String ref, title, description, thumbnail;
+    private float price;
 
     public product_module(String ref, String title, String description, String thumbnail, float price) {
         this.ref = ref;
